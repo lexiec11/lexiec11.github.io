@@ -1,2 +1,376 @@
-hi 
-is my website working
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Lexie Collier | Personal Site</title>
+
+  <style>
+    :root{
+      --bg:#0b0f19;
+      --card:rgba(255,255,255,0.08);
+      --text:rgba(255,255,255,0.92);
+      --muted:rgba(255,255,255,0.70);
+      --line:rgba(255,255,255,0.14);
+      --accent:#7c5cff;
+      --shadow:0 12px 40px rgba(0,0,0,0.35);
+      --radius:18px;
+      --max:1100px;
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      color:var(--text);
+      background:
+        radial-gradient(900px 500px at 20% 0%, rgba(124,92,255,0.30), transparent 60%),
+        radial-gradient(900px 500px at 80% 10%, rgba(0,209,255,0.18), transparent 55%),
+        linear-gradient(180deg, #070a12, var(--bg));
+      min-height:100vh;
+    }
+
+    a{color:inherit;text-decoration:none}
+    .wrap{width:min(var(--max), 92vw); margin:0 auto;}
+    header{
+      position:sticky; top:0;
+      backdrop-filter:blur(12px);
+      background:rgba(11,15,25,0.65);
+      border-bottom:1px solid var(--line);
+      z-index:10;
+    }
+    .nav{
+      display:flex; align-items:center; justify-content:space-between;
+      padding:16px 0; gap:16px;
+    }
+    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
+    .dot{
+      width:10px;height:10px;border-radius:999px;background:var(--accent);
+      box-shadow:0 0 0 6px rgba(124,92,255,0.18);
+    }
+    .links{display:flex;gap:14px;flex-wrap:wrap;color:var(--muted);font-weight:600;font-size:14px}
+    .links a:hover{color:var(--text)}
+    main{padding:36px 0 70px}
+
+    .hero{
+      display:grid;
+      grid-template-columns: 1.3fr 0.9fr;
+      gap:22px;
+      align-items:stretch;
+    }
+    @media (max-width:900px){ .hero{grid-template-columns:1fr;} }
+
+    .card{
+      background:var(--card);
+      border:1px solid var(--line);
+      border-radius:var(--radius);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+
+    .hero-left{padding:26px;}
+    .kicker{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:8px 12px; border-radius:999px;
+      border:1px solid var(--line);
+      color:var(--muted);
+      font-weight:700;
+      font-size:12px;
+      letter-spacing:0.6px;
+      text-transform:uppercase;
+    }
+    h1{
+      margin:14px 0 10px;
+      font-size:clamp(30px, 4vw, 46px);
+      line-height:1.1;
+      letter-spacing:-0.5px;
+    }
+    .lead{
+      margin:0;
+      color:var(--muted);
+      font-size:16px;
+      line-height:1.6;
+      max-width:62ch;
+    }
+    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px;}
+    .btn{
+      display:inline-flex;align-items:center;justify-content:center;gap:10px;
+      padding:12px 14px;border-radius:12px;border:1px solid var(--line);
+      font-weight:800;font-size:14px;
+      transition: transform .08s ease, background .2s ease, border-color .2s ease;
+      user-select:none;
+    }
+    .btn:hover{transform:translateY(-1px);border-color:rgba(255,255,255,0.25);}
+    .btn.primary{
+      background: linear-gradient(135deg, rgba(124,92,255,0.95), rgba(0,209,255,0.70));
+      border-color:transparent;
+      color:#0b0f19;
+    }
+    .btn.ghost{background:rgba(255,255,255,0.06); color:var(--text);}
+
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:14px;
+      margin-top:22px;
+    }
+    @media (max-width:900px){ .grid{grid-template-columns:1fr;} }
+    .mini{
+      padding:16px;
+      border-top:1px solid var(--line);
+      background:rgba(255,255,255,0.03);
+    }
+    .mini h3{
+      margin:0 0 6px;
+      font-size:13px;
+      color:var(--muted);
+      text-transform:uppercase;
+      letter-spacing:.9px;
+    }
+    .mini p{margin:0;font-weight:800;font-size:15px;}
+
+    .hero-right{padding:0;display:flex;flex-direction:column;}
+    .photo{
+      aspect-ratio: 4/3;
+      background:
+        radial-gradient(700px 300px at 40% 20%, rgba(124,92,255,0.35), transparent 60%),
+        radial-gradient(700px 320px at 70% 40%, rgba(0,209,255,0.18), transparent 60%),
+        linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02));
+      border-bottom:1px solid var(--line);
+      display:flex;align-items:center;justify-content:center;
+      color:rgba(255,255,255,0.75);
+      font-weight:800;
+      padding:16px;
+      text-align:center;
+    }
+    .side{padding:18px;display:flex;flex-direction:column;gap:12px;}
+    .tag-row{display:flex;flex-wrap:wrap;gap:10px;}
+    .tag{
+      padding:8px 10px;border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,0.05);
+      font-size:13px;font-weight:700;color:var(--muted);
+    }
+
+    .section-title{
+      display:flex;align-items:center;justify-content:space-between;
+      gap:14px;margin:26px 0 10px;
+    }
+    .section-title h2{margin:0;font-size:18px;letter-spacing:-0.2px;}
+    .rule{height:1px;background:var(--line);flex:1;}
+
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+    @media (max-width:900px){ .two-col{grid-template-columns:1fr;} }
+
+    .list{padding:18px;}
+    .item{padding:12px 0;border-bottom:1px dashed rgba(255,255,255,0.15);}
+    .item:last-child{border-bottom:none;}
+    .item strong{display:block;font-size:15px;margin-bottom:4px;}
+    .item span{color:var(--muted);font-size:14px;line-height:1.5;}
+
+    footer{
+      padding:30px 0;
+      color:var(--muted);
+      border-top:1px solid var(--line);
+      text-align:center;
+      font-size:13px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="wrap">
+      <div class="nav">
+        <div class="brand"><span class="dot"></span> Lexie Collier</div>
+        <nav class="links">
+          <a href="#about">About</a>
+          <a href="#experience">Experience</a>
+          <a href="#leadership">Leadership</a>
+          <a href="#skills">Skills</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <!-- ABOUT / HERO -->
+    <section id="about" class="hero">
+      <div class="card hero-left">
+        <div class="kicker">Entrepreneurship • Marketing • Business</div>
+
+        <h1>Hi, I’m Lexie Collier.</h1>
+        <p class="lead">
+          I’m a Babson College student (BSBA, Entrepreneurship & Marketing) with experience across marketing,
+          project coordination, and market research. I’ve supported brands and organizations in Australia and the UK,
+          and I enjoy building strong client relationships, creating clear strategy, and executing high-quality work.
+        </p>
+
+        <div class="cta-row">
+          <!-- Replace #contact with your actual email/LinkedIn pages if you want -->
+          <a class="btn primary" href="#contact">Contact →</a>
+          <!-- Optional: add your resume link -->
+          <!-- <a class="btn ghost" href="resume.pdf" target="_blank" rel="noopener">Resume</a> -->
+          <a class="btn ghost" href="#experience">Experience</a>
+        </div>
+
+        <div class="grid">
+          <div class="mini">
+            <h3>Education</h3>
+            <p>Babson College (BSBA)</p>
+          </div>
+          <div class="mini">
+            <h3>Focus</h3>
+            <p>Entrepreneurship & Marketing</p>
+          </div>
+          <div class="mini">
+            <h3>Locations</h3>
+            <p>US • UK • Australia</p>
+          </div>
+        </div>
+      </div>
+
+      <aside class="card hero-right">
+        <div class="photo">
+          Replace this box with your professional headshot<br/>
+          (recommended: square or 4:3)
+        </div>
+        <div class="side">
+          <div class="tag-row">
+            <span class="tag">Marketing Strategy</span>
+            <span class="tag">Client Relations</span>
+            <span class="tag">Market Research</span>
+            <span class="tag">Project Coordination</span>
+          </div>
+          <div class="tag-row">
+            <span class="tag">Excel</span>
+            <span class="tag">PowerPoint</span>
+            <span class="tag">Canva</span>
+            <span class="tag">Minitab</span>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- EXPERIENCE -->
+    <div class="section-title" id="experience">
+      <h2>Experience</h2>
+      <div class="rule"></div>
+    </div>
+
+    <section class="card list">
+      <div class="item">
+        <strong>Holmes Education Group — Project Intern (London, England)</strong>
+        <span>Coordinated a week-long event series for ~150 guests, managing end-to-end travel arrangements and logistics.
+          Collaborated with vendors, restaurants, and event planners to ensure smooth execution and professional stakeholder communication.</span>
+      </div>
+
+      <div class="item">
+        <strong>GemGuard — Founder & Marketing Manager (Wellesley, MA)</strong>
+        <span>Led brand strategy, market positioning, and customer engagement for a fem-focused startup.
+          Oversaw product direction and website development, using data-informed decisions to support growth.</span>
+      </div>
+
+      <div class="item">
+        <strong>CRIZAC — Intern (London, England)</strong>
+        <span>Conducted market research and competitor analysis in international student recruitment, assessing commission-based revenue models
+          and identifying optimization opportunities that improved partner conversion rates.</span>
+      </div>
+
+      <div class="item">
+        <strong>Call Me Jack — Marketing Intern (Melbourne, Australia)</strong>
+        <span>Designed and executed digital campaigns, created social content aligned to branding strategy, and supported client relationships.
+          Focused on improving engagement and brand visibility through research and content optimization.</span>
+      </div>
+
+      <div class="item">
+        <strong>The Masters Institute — Fashion & Coordination Intern (Melbourne, Australia)</strong>
+        <span>Coordinated training, photoshoots, and events while supporting daily operations, scheduling, and marketing content.
+          Contributed to improved logistics and student relationship management.</span>
+      </div>
+    </section>
+
+    <!-- LEADERSHIP -->
+    <div class="section-title" id="leadership">
+      <h2>Leadership & Activities</h2>
+      <div class="rule"></div>
+    </div>
+
+    <section class="two-col">
+      <div class="card list">
+        <div class="item">
+          <strong>Steering Committee — Fundraiser Manager & Member (Institut Le Rosey)</strong>
+          <span>Organized fundraising initiatives and events supporting humanitarian causes (including flood relief and earthquake recovery).</span>
+        </div>
+        <div class="item">
+          <strong>Babson International Student Collective</strong>
+          <span>Campus involvement focused on community-building and international student support.</span>
+        </div>
+      </div>
+
+      <div class="card list">
+        <div class="item">
+          <strong>Entrepreneurship & Economics Forum — Founder & President</strong>
+          <span>Founded and led a forum facilitating discussion on economic trends and business strategy, engaging students and guest speakers
+            through high-impact events.</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- SKILLS -->
+    <div class="section-title" id="skills">
+      <h2>Skills</h2>
+      <div class="rule"></div>
+    </div>
+
+    <section class="card list">
+      <div class="item">
+        <strong>Technical</strong>
+        <span>Excel • PowerPoint • Canva • Minitab</span>
+      </div>
+      <div class="item">
+        <strong>Languages</strong>
+        <span>English (Native) • French (C1)</span>
+      </div>
+      <div class="item">
+        <strong>Interests</strong>
+        <span>Marketing • Real Estate • Client Connections • Luxury Management • Skiing • Netball • Culture & Cuisine</span>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <div class="section-title" id="contact">
+      <h2>Contact</h2>
+      <div class="rule"></div>
+    </div>
+
+    <section class="card list">
+      <div class="item">
+        <strong>Email</strong>
+        <span><a href="mailto:lexie.collier@icloud.com">lexie.collier@icloud.com</a></span>
+      </div>
+      <div class="item">
+        <strong>Phone</strong>
+        <span><a href="tel:+17818096668">+1 (781) 809-6668</a> • <a href="tel:+447479013989">+44 7479 013 989</a></span>
+      </div>
+      <div class="item">
+        <strong>Location</strong>
+        <span>Wellesley, MA • London, United Kingdom • Melbourne, VIC, Australia</span>
+      </div>
+      <div class="item">
+        <strong>LinkedIn</strong>
+        <span><a href="https://www.linkedin.com/in/yourhandle" target="_blank" rel="noopener">Add your LinkedIn URL here</a></span>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    © <span id="year"></span> Lexie Collier • Built with HTML + CSS
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
