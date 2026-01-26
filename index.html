@@ -3,177 +3,426 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Lexie Collier | Personal Site</title>
+  <title>Lexie Collier | Pink Portfolio</title>
 
   <style>
     :root{
-      --bg:#0b0f19;
-      --card:rgba(255,255,255,0.08);
-      --text:rgba(255,255,255,0.92);
-      --muted:rgba(255,255,255,0.70);
-      --line:rgba(255,255,255,0.14);
-      --accent:#7c5cff;
-      --shadow:0 12px 40px rgba(0,0,0,0.35);
-      --radius:18px;
-      --max:1100px;
+      /* PINK WORLD */
+      --bg0:#0b0610;
+      --bg1:#14071c;
+      --ink:rgba(255,255,255,.92);
+      --muted:rgba(255,255,255,.72);
+      --line:rgba(255,255,255,.16);
+
+      --pink:#ff4fd8;
+      --hot:#ff2a6d;
+      --rose:#ff9bd7;
+      --violet:#a855ff;
+      --peach:#ffb4a2;
+
+      --card:rgba(255,255,255,.07);
+      --glass:rgba(20,7,28,.55);
+      --shadow:0 18px 60px rgba(0,0,0,.45);
+      --radius:22px;
+      --max:1120px;
+
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
     }
 
     *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
     body{
       margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
-      color:var(--text);
-      background:
-        radial-gradient(900px 500px at 20% 0%, rgba(124,92,255,0.30), transparent 60%),
-        radial-gradient(900px 500px at 80% 10%, rgba(0,209,255,0.18), transparent 55%),
-        linear-gradient(180deg, #070a12, var(--bg));
+      font-family: var(--sans);
+      color:var(--ink);
       min-height:100vh;
+      background:
+        radial-gradient(900px 520px at 18% -10%, rgba(255,79,216,.40), transparent 60%),
+        radial-gradient(900px 520px at 85% 10%, rgba(255,42,109,.22), transparent 55%),
+        radial-gradient(700px 500px at 55% 110%, rgba(168,85,255,.18), transparent 55%),
+        linear-gradient(180deg, var(--bg0), var(--bg1) 65%, #07020a);
+      overflow-x:hidden;
     }
 
-    a{color:inherit;text-decoration:none}
+    /* subtle moving sparkles (no JS) */
+    body::before{
+      content:"";
+      position:fixed; inset:-20%;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,.10) 0 2px, transparent 3px),
+        radial-gradient(circle at 70% 50%, rgba(255,255,255,.10) 0 2px, transparent 3px),
+        radial-gradient(circle at 40% 80%, rgba(255,255,255,.10) 0 2px, transparent 3px),
+        radial-gradient(circle at 85% 85%, rgba(255,255,255,.08) 0 2px, transparent 3px);
+      background-size: 420px 420px;
+      filter: blur(.2px);
+      opacity:.55;
+      animation: drift 18s linear infinite;
+      pointer-events:none;
+      z-index:-1;
+    }
+    @keyframes drift{
+      0%{transform:translate3d(0,0,0) rotate(0deg)}
+      100%{transform:translate3d(-120px, 80px, 0) rotate(6deg)}
+    }
+
+    a{color:inherit; text-decoration:none}
     .wrap{width:min(var(--max), 92vw); margin:0 auto;}
+    main{padding:34px 0 78px}
+
+    /* HEADER */
     header{
       position:sticky; top:0;
-      backdrop-filter:blur(12px);
-      background:rgba(11,15,25,0.65);
-      border-bottom:1px solid var(--line);
-      z-index:10;
+      z-index:50;
+      backdrop-filter: blur(14px);
+      background: linear-gradient(180deg, rgba(20,7,28,.72), rgba(20,7,28,.40));
+      border-bottom:1px solid rgba(255,255,255,.10);
     }
     .nav{
       display:flex; align-items:center; justify-content:space-between;
-      padding:16px 0; gap:16px;
+      padding:14px 0; gap:14px;
     }
-    .brand{display:flex;align-items:center;gap:10px;font-weight:700}
-    .dot{
-      width:10px;height:10px;border-radius:999px;background:var(--accent);
-      box-shadow:0 0 0 6px rgba(124,92,255,0.18);
+    .brand{
+      display:flex; align-items:center; gap:10px;
+      font-weight:900; letter-spacing:.2px;
     }
-    .links{display:flex;gap:14px;flex-wrap:wrap;color:var(--muted);font-weight:600;font-size:14px}
-    .links a:hover{color:var(--text)}
-    main{padding:36px 0 70px}
-
-    .hero{
-      display:grid;
-      grid-template-columns: 1.3fr 0.9fr;
-      gap:22px;
-      align-items:stretch;
-    }
-    @media (max-width:900px){ .hero{grid-template-columns:1fr;} }
-
-    .card{
-      background:var(--card);
-      border:1px solid var(--line);
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
+    .sig{
+      width:34px;height:34px;border-radius:999px;
+      background:
+        radial-gradient(10px 10px at 30% 30%, rgba(255,255,255,.65), transparent 60%),
+        conic-gradient(from 240deg, var(--pink), var(--hot), var(--violet), var(--pink));
+      box-shadow:
+        0 0 0 6px rgba(255,79,216,.14),
+        0 14px 35px rgba(255,79,216,.18);
+      position:relative;
       overflow:hidden;
     }
+    .sig::after{
+      content:"";
+      position:absolute; inset:-40%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+      transform: rotate(18deg);
+      animation: shine 2.8s ease-in-out infinite;
+      opacity:.35;
+    }
+    @keyframes shine{
+      0%,55%{transform:translateX(-30%) rotate(18deg)}
+      100%{transform:translateX(30%) rotate(18deg)}
+    }
+    .links{
+      display:flex; gap:14px; flex-wrap:wrap;
+      color:var(--muted);
+      font-weight:750;
+      font-size:13px;
+      align-items:center;
+    }
+    .links a{
+      padding:9px 10px;
+      border-radius:999px;
+      border:1px solid transparent;
+      transition: transform .12s ease, border-color .2s ease, background .2s ease, color .2s ease;
+    }
+    .links a:hover{
+      color:var(--ink);
+      border-color: rgba(255,79,216,.35);
+      background: rgba(255,79,216,.10);
+      transform: translateY(-1px);
+    }
 
-    .hero-left{padding:26px;}
+    /* “DIFFERENT” HERO: offset collage layout */
+    .hero{
+      display:grid;
+      grid-template-columns: 1.35fr .65fr;
+      gap:16px;
+      align-items:stretch;
+    }
+    @media (max-width:960px){
+      .hero{grid-template-columns:1fr;}
+    }
+
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.05));
+      border:1px solid rgba(255,255,255,.13);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      position:relative;
+      overflow:hidden;
+      transform: translateZ(0);
+    }
+
+    /* decorative “ribbon” corner */
+    .card::before{
+      content:"";
+      position:absolute;
+      width:240px;height:240px;
+      right:-120px; top:-120px;
+      background: conic-gradient(from 180deg, rgba(255,79,216,.55), rgba(255,42,109,.25), rgba(168,85,255,.35), rgba(255,79,216,.55));
+      filter: blur(0px);
+      opacity:.85;
+      transform: rotate(22deg);
+    }
+    .card::after{
+      content:"";
+      position:absolute; inset:0;
+      background:
+        radial-gradient(900px 420px at 12% 12%, rgba(255,79,216,.14), transparent 55%),
+        radial-gradient(700px 380px at 90% 35%, rgba(255,42,109,.10), transparent 60%);
+      pointer-events:none;
+    }
+
+    .hero-left{padding:24px 24px 18px}
     .kicker{
       display:inline-flex; align-items:center; gap:10px;
       padding:8px 12px; border-radius:999px;
-      border:1px solid var(--line);
-      color:var(--muted);
-      font-weight:700;
+      border:1px solid rgba(255,255,255,.16);
+      background: rgba(255,79,216,.08);
+      color: rgba(255,255,255,.82);
+      font-weight:900;
       font-size:12px;
-      letter-spacing:0.6px;
+      letter-spacing:.8px;
       text-transform:uppercase;
+      position:relative;
+      z-index:1;
     }
+    .kicker .pulse{
+      width:10px;height:10px;border-radius:999px;
+      background: var(--pink);
+      box-shadow: 0 0 0 6px rgba(255,79,216,.16);
+    }
+
     h1{
       margin:14px 0 10px;
-      font-size:clamp(30px, 4vw, 46px);
-      line-height:1.1;
-      letter-spacing:-0.5px;
+      font-size: clamp(32px, 4.2vw, 52px);
+      line-height:1.05;
+      letter-spacing:-.9px;
+      position:relative;
+      z-index:1;
     }
     .lead{
       margin:0;
       color:var(--muted);
       font-size:16px;
-      line-height:1.6;
-      max-width:62ch;
+      line-height:1.65;
+      max-width: 64ch;
+      position:relative;
+      z-index:1;
     }
-    .cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:18px;}
-    .btn{
-      display:inline-flex;align-items:center;justify-content:center;gap:10px;
-      padding:12px 14px;border-radius:12px;border:1px solid var(--line);
-      font-weight:800;font-size:14px;
-      transition: transform .08s ease, background .2s ease, border-color .2s ease;
-      user-select:none;
-    }
-    .btn:hover{transform:translateY(-1px);border-color:rgba(255,255,255,0.25);}
-    .btn.primary{
-      background: linear-gradient(135deg, rgba(124,92,255,0.95), rgba(0,209,255,0.70));
-      border-color:transparent;
-      color:#0b0f19;
-    }
-    .btn.ghost{background:rgba(255,255,255,0.06); color:var(--text);}
 
-    .grid{
+    /* “cool + different”: draggable-ish looking stickers (pure CSS) */
+    .sticker-row{
+      display:flex; flex-wrap:wrap; gap:10px;
+      margin-top:16px;
+      position:relative;
+      z-index:1;
+    }
+    .sticker{
+      padding:10px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.14);
+      background:
+        radial-gradient(10px 10px at 20% 30%, rgba(255,255,255,.25), transparent 60%),
+        linear-gradient(135deg, rgba(255,79,216,.22), rgba(255,255,255,.06));
+      box-shadow:
+        0 10px 26px rgba(0,0,0,.28),
+        inset 0 1px 0 rgba(255,255,255,.12);
+      font-weight:850;
+      font-size:13px;
+      color: rgba(255,255,255,.86);
+      transform: rotate(var(--r, -1deg));
+    }
+    .sticker:nth-child(2){--r:1.6deg}
+    .sticker:nth-child(3){--r:-2.2deg}
+    .sticker:nth-child(4){--r:2.6deg}
+
+    .cta-row{display:flex; gap:12px; flex-wrap:wrap; margin-top:18px; position:relative; z-index:1;}
+    .btn{
+      display:inline-flex; align-items:center; justify-content:center; gap:10px;
+      padding:12px 14px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.16);
+      font-weight:900;
+      font-size:14px;
+      user-select:none;
+      transition: transform .10s ease, background .2s ease, border-color .2s ease, box-shadow .2s ease;
+    }
+    .btn:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,79,216,.40);
+      box-shadow: 0 14px 30px rgba(255,79,216,.12);
+    }
+    .btn.primary{
+      color:#190014;
+      border-color: transparent;
+      background:
+        radial-gradient(30px 30px at 20% 20%, rgba(255,255,255,.50), transparent 60%),
+        linear-gradient(135deg, var(--pink), var(--hot) 55%, var(--violet));
+    }
+    .btn.ghost{
+      background: rgba(255,255,255,.06);
+      color: var(--ink);
+    }
+
+    /* “stats” as a timeline strip */
+    .strip{
+      margin-top:16px;
+      border-top:1px solid rgba(255,255,255,.12);
+      padding-top:14px;
       display:grid;
       grid-template-columns: repeat(3, 1fr);
-      gap:14px;
-      margin-top:22px;
+      gap:12px;
+      position:relative;
+      z-index:1;
     }
-    @media (max-width:900px){ .grid{grid-template-columns:1fr;} }
-    .mini{
-      padding:16px;
-      border-top:1px solid var(--line);
-      background:rgba(255,255,255,0.03);
+    @media (max-width:960px){
+      .strip{grid-template-columns:1fr}
     }
-    .mini h3{
-      margin:0 0 6px;
-      font-size:13px;
-      color:var(--muted);
-      text-transform:uppercase;
-      letter-spacing:.9px;
-    }
-    .mini p{margin:0;font-weight:800;font-size:15px;}
-
-    .hero-right{padding:0;display:flex;flex-direction:column;}
-    .photo{
-      aspect-ratio: 4/3;
+    .pill{
+      padding:14px 14px;
+      border-radius: 18px;
+      border:1px solid rgba(255,255,255,.12);
       background:
-        radial-gradient(700px 300px at 40% 20%, rgba(124,92,255,0.35), transparent 60%),
-        radial-gradient(700px 320px at 70% 40%, rgba(0,209,255,0.18), transparent 60%),
-        linear-gradient(135deg, rgba(255,255,255,0.10), rgba(255,255,255,0.02));
-      border-bottom:1px solid var(--line);
-      display:flex;align-items:center;justify-content:center;
-      color:rgba(255,255,255,0.75);
-      font-weight:800;
-      padding:16px;
+        linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+    }
+    .pill small{
+      display:block;
+      font-family: var(--mono);
+      letter-spacing:.6px;
+      color: rgba(255,255,255,.70);
+      text-transform:uppercase;
+      font-size:11px;
+      margin-bottom:6px;
+    }
+    .pill b{font-size:15px}
+
+    /* RIGHT COLUMN: “PROFILE CARD” */
+    .hero-right{
+      padding:0;
+      display:flex;
+      flex-direction:column;
+    }
+    .photo{
+      position:relative;
+      border-bottom:1px solid rgba(255,255,255,.12);
+      aspect-ratio: 1 / 1;
+      display:flex; align-items:center; justify-content:center;
+      padding:18px;
       text-align:center;
+      overflow:hidden;
+      z-index:1;
+      background:
+        radial-gradient(600px 320px at 50% 15%, rgba(255,79,216,.35), transparent 60%),
+        radial-gradient(520px 320px at 65% 55%, rgba(255,42,109,.22), transparent 62%),
+        radial-gradient(520px 300px at 30% 70%, rgba(168,85,255,.18), transparent 65%),
+        linear-gradient(135deg, rgba(255,255,255,.10), rgba(255,255,255,.03));
     }
-    .side{padding:18px;display:flex;flex-direction:column;gap:12px;}
-    .tag-row{display:flex;flex-wrap:wrap;gap:10px;}
+    .photo .frame{
+      width:100%;
+      height:100%;
+      border-radius: 20px;
+      border:1px dashed rgba(255,255,255,.28);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      color: rgba(255,255,255,.80);
+      font-weight:900;
+      line-height:1.4;
+      padding:14px;
+      position:relative;
+    }
+    .photo .frame span{
+      display:block;
+      font-family: var(--mono);
+      font-size:12px;
+      color: rgba(255,255,255,.70);
+      margin-top:10px;
+      letter-spacing:.4px;
+    }
+
+    .side{
+      padding:16px;
+      display:flex;
+      flex-direction:column;
+      gap:12px;
+      position:relative;
+      z-index:1;
+    }
+    .tag-row{display:flex; flex-wrap:wrap; gap:10px;}
     .tag{
-      padding:8px 10px;border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,0.05);
-      font-size:13px;font-weight:700;color:var(--muted);
+      padding:8px 10px;
+      border-radius:999px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,79,216,.08);
+      color: rgba(255,255,255,.80);
+      font-weight:850;
+      font-size:13px;
     }
 
+    /* SECTION TITLES */
     .section-title{
-      display:flex;align-items:center;justify-content:space-between;
-      gap:14px;margin:26px 0 10px;
+      display:flex; align-items:center; gap:14px;
+      margin:26px 0 10px;
     }
-    .section-title h2{margin:0;font-size:18px;letter-spacing:-0.2px;}
-    .rule{height:1px;background:var(--line);flex:1;}
+    .section-title h2{
+      margin:0;
+      font-size:18px;
+      letter-spacing:-.2px;
+      position:relative;
+    }
+    .rule{
+      height:1px; flex:1;
+      background: linear-gradient(90deg, rgba(255,79,216,.55), rgba(255,255,255,.10), rgba(255,42,109,.45));
+      border-radius:999px;
+    }
 
-    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
-    @media (max-width:900px){ .two-col{grid-template-columns:1fr;} }
+    /* LIST CARDS */
+    .list{padding:18px; position:relative; z-index:1;}
+    .item{
+      padding:12px 0;
+      border-bottom:1px dashed rgba(255,255,255,.15);
+    }
+    .item:last-child{border-bottom:none}
+    .item strong{display:block; font-size:15px; margin-bottom:4px;}
+    .item span{color:var(--muted); font-size:14px; line-height:1.55}
 
-    .list{padding:18px;}
-    .item{padding:12px 0;border-bottom:1px dashed rgba(255,255,255,0.15);}
-    .item:last-child{border-bottom:none;}
-    .item strong{display:block;font-size:15px;margin-bottom:4px;}
-    .item span{color:var(--muted);font-size:14px;line-height:1.5;}
+    .two-col{display:grid; grid-template-columns:1fr 1fr; gap:14px;}
+    @media (max-width:960px){ .two-col{grid-template-columns:1fr;} }
+
+    /* CONTACT: neon copy hint */
+    .copyhint{
+      font-family: var(--mono);
+      font-size:12px;
+      color: rgba(255,255,255,.70);
+      margin-top:6px;
+    }
+    .contact-link{
+      display:inline-flex; align-items:center; gap:10px;
+      padding:10px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(255,255,255,.14);
+      background: rgba(255,255,255,.05);
+      transition: transform .10s ease, border-color .2s ease, background .2s ease;
+    }
+    .contact-link:hover{
+      transform: translateY(-2px);
+      border-color: rgba(255,79,216,.40);
+      background: rgba(255,79,216,.10);
+    }
 
     footer{
       padding:30px 0;
-      color:var(--muted);
-      border-top:1px solid var(--line);
+      color: rgba(255,255,255,.72);
+      border-top:1px solid rgba(255,255,255,.10);
       text-align:center;
       font-size:13px;
+    }
+
+    /* OPTIONAL: replace placeholder with <img> */
+    .headshot{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      border-radius: 20px;
+      display:none;
     }
   </style>
 </head>
@@ -182,7 +431,10 @@
   <header>
     <div class="wrap">
       <div class="nav">
-        <div class="brand"><span class="dot"></span> Lexie Collier</div>
+        <div class="brand">
+          <span class="sig" aria-hidden="true"></span>
+          Lexie Collier
+        </div>
         <nav class="links">
           <a href="#about">About</a>
           <a href="#experience">Experience</a>
@@ -198,7 +450,7 @@
     <!-- ABOUT / HERO -->
     <section id="about" class="hero">
       <div class="card hero-left">
-        <div class="kicker">Entrepreneurship • Marketing • Business</div>
+        <div class="kicker"><span class="pulse"></span> Entrepreneurship • Marketing • Business</div>
 
         <h1>Hi, I’m Lexie Collier.</h1>
         <p class="lead">
@@ -207,47 +459,61 @@
           and I enjoy building strong client relationships, creating clear strategy, and executing high-quality work.
         </p>
 
-        <div class="cta-row">
-          <!-- Replace #contact with your actual email/LinkedIn pages if you want -->
-          <a class="btn primary" href="#contact">Contact →</a>
-          <!-- Optional: add your resume link -->
-          <!-- <a class="btn ghost" href="resume.pdf" target="_blank" rel="noopener">Resume</a> -->
-          <a class="btn ghost" href="#experience">Experience</a>
+        <div class="sticker-row" aria-label="Quick highlights">
+          <div class="sticker">💗 Marketing Strategy</div>
+          <div class="sticker">✨ Client Relations</div>
+          <div class="sticker">📌 Market Research</div>
+          <div class="sticker">🧠 Project Coordination</div>
         </div>
 
-        <div class="grid">
-          <div class="mini">
-            <h3>Education</h3>
-            <p>Babson College (BSBA)</p>
+        <div class="cta-row">
+          <a class="btn primary" href="#contact">Contact →</a>
+          <a class="btn ghost" href="#experience">Experience</a>
+          <!-- <a class="btn ghost" href="resume.pdf" target="_blank" rel="noopener">Resume</a> -->
+        </div>
+
+        <div class="strip">
+          <div class="pill">
+            <small>Education</small>
+            <b>Babson College (BSBA)</b>
           </div>
-          <div class="mini">
-            <h3>Focus</h3>
-            <p>Entrepreneurship & Marketing</p>
+          <div class="pill">
+            <small>Focus</small>
+            <b>Entrepreneurship & Marketing</b>
           </div>
-          <div class="mini">
-            <h3>Locations</h3>
-            <p>US • UK • Australia</p>
+          <div class="pill">
+            <small>Across</small>
+            <b>US • UK • Australia</b>
           </div>
         </div>
       </div>
 
       <aside class="card hero-right">
         <div class="photo">
-          Replace this box with your professional headshot<br/>
-          (recommended: square or 4:3)
-        </div>
-        <div class="side">
-          <div class="tag-row">
-            <span class="tag">Marketing Strategy</span>
-            <span class="tag">Client Relations</span>
-            <span class="tag">Market Research</span>
-            <span class="tag">Project Coordination</span>
+          <!-- OPTION A: Keep placeholder (default) -->
+          <div class="frame">
+            Drop your headshot here
+            <span>Tip: replace this div with an &lt;img class="headshot" ...&gt;</span>
           </div>
+
+          <!-- OPTION B: When you have a photo, uncomment this and delete the frame above -->
+          <!--
+          <img class="headshot" src="headshot.jpg" alt="Lexie Collier headshot" style="display:block;">
+          -->
+        </div>
+
+        <div class="side">
           <div class="tag-row">
             <span class="tag">Excel</span>
             <span class="tag">PowerPoint</span>
             <span class="tag">Canva</span>
             <span class="tag">Minitab</span>
+          </div>
+          <div class="tag-row">
+            <span class="tag">Luxury Mgmt</span>
+            <span class="tag">Branding</span>
+            <span class="tag">Research</span>
+            <span class="tag">Events</span>
           </div>
         </div>
       </aside>
@@ -347,12 +613,15 @@
 
     <section class="card list">
       <div class="item">
-        <strong>Email</strong>
-        <span><a href="mailto:lexie.collier@icloud.com">lexie.collier@icloud.com</a></span>
+        <strong>Email</strong><br/>
+        <a class="contact-link" href="mailto:lexie.collier@icloud.com">lexie.collier@icloud.com</a>
+        <div class="copyhint">click to email</div>
       </div>
       <div class="item">
-        <strong>Phone</strong>
-        <span><a href="tel:+17818096668">+1 (781) 809-6668</a> • <a href="tel:+447479013989">+44 7479 013 989</a></span>
+        <strong>Phone</strong><br/>
+        <a class="contact-link" href="tel:+17818096668">+1 (781) 809-6668</a>
+        <span style="opacity:.55"> • </span>
+        <a class="contact-link" href="tel:+447479013989">+44 7479 013 989</a>
       </div>
       <div class="item">
         <strong>Location</strong>
@@ -360,13 +629,13 @@
       </div>
       <div class="item">
         <strong>LinkedIn</strong>
-        <span><a href="https://www.linkedin.com/in/yourhandle" target="_blank" rel="noopener">Add your LinkedIn URL here</a></span>
+        <span><a class="contact-link" href="https://www.linkedin.com/in/yourhandle" target="_blank" rel="noopener">Add your LinkedIn URL here</a></span>
       </div>
     </section>
   </main>
 
   <footer>
-    © <span id="year"></span> Lexie Collier • Built with HTML + CSS
+    © <span id="year"></span> Lexie Collier • Pink edition ✦
   </footer>
 
   <script>
