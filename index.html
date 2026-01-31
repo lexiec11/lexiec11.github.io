@@ -1,412 +1,330 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Lexie Collier | Entrepreneurship & Marketing</title>
-  <meta name="description" content="Alexandra 'Lexie' Collier - Babson College student specializing in Entrepreneurship & Marketing with global experience." />
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;0,800;0,900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alexandra Collier | Portfolio</title>
+  <meta name="description" content="Alexandra Collier - Babson College student with global experience in marketing strategy, project coordination, and market research.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
-      background: #fff;
-      color: #141414;
-      line-height: 1.6;
-      -webkit-font-smoothing: antialiased;
+    :root {
+      --background: #FAF9F7;
+      --foreground: #2C2C2C;
+      --secondary: #F5F3EF;
+      --muted: #6B6B6B;
+      --blush: #E8D5D5;
+      --blush-dark: #C9A9A9;
+      --border: #E5E5E5;
     }
-    h1, h2, h3, h4, h5, h6 { font-family: 'Playfair Display', serif; font-weight: 700; }
-    a { text-decoration: none; color: inherit; }
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--background);
+      color: var(--foreground);
+      line-height: 1.6;
+    }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
-    @media (min-width: 1024px) { .container { padding: 0 48px; } }
-
+    
     /* Header */
     header {
-      position: sticky; top: 0; z-index: 50;
-      background: rgba(255,255,255,0.95);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid #e5e5e5;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--background);
+      z-index: 100;
     }
-    .nav { display: flex; align-items: center; justify-content: space-between; padding: 20px 0; }
-    .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
-    .nav-links { display: none; gap: 40px; }
-    @media (min-width: 768px) { .nav-links { display: flex; } }
-    .nav-links a { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: #666; transition: color 0.3s; }
-    .nav-links a:hover { color: #141414; }
-    .menu-btn { display: block; background: none; border: none; cursor: pointer; }
-    @media (min-width: 768px) { .menu-btn { display: none; } }
-    .mobile-menu { display: none; flex-direction: column; gap: 20px; padding: 24px 0; border-top: 1px solid #e5e5e5; margin-top: 20px; }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: #666; }
-
+    .header-inner {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      text-decoration: none;
+      color: var(--foreground);
+    }
+    nav { display: flex; gap: 32px; }
+    nav a {
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: color 0.3s;
+    }
+    nav a:hover, nav a.active { color: var(--foreground); }
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 8px;
+    }
+    .mobile-menu-btn span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--foreground);
+      margin: 5px 0;
+    }
+    .mobile-nav {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      background: var(--background);
+      border-bottom: 1px solid var(--border);
+      padding: 24px;
+    }
+    .mobile-nav.open { display: block; }
+    .mobile-nav a {
+      display: block;
+      padding: 12px 0;
+      text-decoration: none;
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+    
     /* Hero */
-    .hero { padding: 96px 0 80px; }
-    @media (min-width: 768px) { .hero { padding: 128px 0 100px; } }
-    @media (min-width: 1024px) { .hero { padding: 160px 0 120px; } }
-    .hero-inner { display: flex; flex-direction: column; align-items: center; gap: 64px; }
-    @media (min-width: 1024px) { .hero-inner { flex-direction: row; gap: 80px; } }
-    .hero-content { flex: 1; text-align: center; }
-    @media (min-width: 1024px) { .hero-content { text-align: left; } }
-    .tagline { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3em; color: #c9a0a0; margin-bottom: 24px; }
-    .hero h1 { font-size: 3rem; line-height: 1.1; margin-bottom: 32px; }
-    @media (min-width: 768px) { .hero h1 { font-size: 3.75rem; } }
-    @media (min-width: 1024px) { .hero h1 { font-size: 4.5rem; } }
-    .hero h1 span { font-style: italic; font-weight: 400; }
-    .hero-desc { font-size: 1.125rem; color: #666; max-width: 560px; margin: 0 auto 40px; }
-    @media (min-width: 1024px) { .hero-desc { margin: 0 0 40px; } }
-    .btn-group { display: flex; flex-direction: column; gap: 16px; justify-content: center; }
-    @media (min-width: 640px) { .btn-group { flex-direction: row; } }
-    @media (min-width: 1024px) { .btn-group { justify-content: flex-start; } }
-    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 16px 32px; font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.15em; transition: all 0.3s; }
-    .btn-primary { background: #141414; color: #fff; }
-    .btn-primary:hover { background: #333; }
-    .btn-outline { border: 2px solid #141414; background: transparent; }
-    .btn-outline:hover { background: #141414; color: #fff; }
-    .hero-photo { flex-shrink: 0; position: relative; }
-    .photo-border { position: absolute; inset: -16px; border: 2px solid #c9a0a0; }
-    .photo-placeholder { width: 224px; height: 224px; background: #f5e6e8; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 700; }
-    @media (min-width: 768px) { .photo-placeholder { width: 288px; height: 288px; font-size: 2.5rem; } }
-
+    .hero {
+      padding: 120px 0 100px;
+      text-align: center;
+    }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(56px, 10vw, 88px);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 48px;
+    }
+    .hero h1 span {
+      font-style: italic;
+      font-weight: 400;
+    }
+    .hero-buttons { 
+      display: flex; 
+      gap: 16px; 
+      justify-content: center;
+      flex-wrap: wrap; 
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 16px 32px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      text-decoration: none;
+      transition: all 0.3s;
+      cursor: pointer;
+      border: none;
+    }
+    .btn-primary {
+      background: var(--foreground);
+      color: var(--background);
+    }
+    .btn-primary:hover { opacity: 0.9; }
+    .btn-outline {
+      background: transparent;
+      color: var(--foreground);
+      border: 2px solid var(--foreground);
+    }
+    .btn-outline:hover {
+      background: var(--foreground);
+      color: var(--background);
+    }
+    
     /* Highlights */
-    .highlights { padding: 64px 0; border-top: 1px solid #e5e5e5; border-bottom: 1px solid #e5e5e5; }
-    .highlights-inner { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px 48px; }
-    .highlight { display: flex; align-items: center; gap: 48px; }
-    .highlight span { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; }
-    .highlight-dot { display: none; width: 6px; height: 6px; background: #c9a0a0; border-radius: 50%; }
-    @media (min-width: 768px) { .highlight-dot { display: block; } }
-
+    .highlights {
+      padding: 80px 0;
+      background: var(--secondary);
+    }
+    .highlights-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+    .section-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--blush-dark);
+      margin-bottom: 16px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(32px, 5vw, 48px);
+      font-weight: 700;
+    }
+    .highlights-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+    }
+    .highlight-card {
+      background: var(--background);
+      padding: 32px;
+      border: 1px solid var(--border);
+    }
+    .highlight-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+    .highlight-card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    
     /* Stats */
-    .stats { padding: 80px 0; }
-    .stats-grid { display: grid; grid-template-columns: 1fr; gap: 48px; text-align: center; }
-    @media (min-width: 768px) { .stats-grid { grid-template-columns: repeat(3, 1fr); gap: 32px; } }
-    .stat { padding-right: 0; }
-    @media (min-width: 768px) { .stat:not(:last-child) { border-right: 1px solid #e5e5e5; } }
-    .stat-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3em; color: #c9a0a0; margin-bottom: 16px; }
-    .stat-value { font-family: 'Playfair Display', serif; font-size: 1.875rem; font-weight: 700; margin-bottom: 4px; }
-    @media (min-width: 768px) { .stat-value { font-size: 2.25rem; } }
-    .stat-sub { font-size: 0.875rem; color: #666; }
-
-    /* Experience */
-    .experience { padding: 80px 0 112px; background: #faf9f8; }
-    .section-header { text-align: center; margin-bottom: 64px; }
-    .section-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3em; color: #c9a0a0; margin-bottom: 16px; }
-    .section-title { font-size: 2.25rem; }
-    @media (min-width: 768px) { .section-title { font-size: 3rem; } }
-    .exp-list { max-width: 900px; margin: 0 auto; }
-    .exp-item { display: grid; grid-template-columns: 1fr; gap: 16px; padding: 40px 0; border-bottom: 1px solid #e5e5e5; }
-    @media (min-width: 768px) { .exp-item { grid-template-columns: 200px 1fr; gap: 48px; } }
-    .exp-item:last-child { border-bottom: none; }
-    .exp-meta { text-align: left; }
-    @media (min-width: 768px) { .exp-meta { text-align: right; } }
-    .exp-period { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #666; }
-    .exp-location { font-size: 11px; color: #666; margin-top: 4px; }
-    .exp-company { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 4px; }
-    .exp-role { font-size: 0.875rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #c9a0a0; margin-bottom: 16px; }
-    .exp-desc { color: #666; line-height: 1.7; }
-
-    /* Leadership */
-    .leadership { padding: 80px 0 112px; }
-    .activities-grid { display: grid; grid-template-columns: 1fr; gap: 32px; max-width: 1100px; margin: 0 auto; }
-    @media (min-width: 768px) { .activities-grid { grid-template-columns: repeat(2, 1fr); } }
-    .activity { padding: 32px; border: 1px solid #e5e5e5; transition: border-color 0.3s; }
-    .activity:hover { border-color: #c9a0a0; }
-    .activity-role { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.1em; color: #c9a0a0; margin-bottom: 12px; }
-    .activity-role span { color: #666; }
-    .activity-title { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; margin-bottom: 16px; }
-    .activity-desc { font-size: 0.875rem; color: #666; line-height: 1.7; }
-
-    /* Skills */
-    .skills { padding: 80px 0 112px; background: #faf9f8; }
-    .skills-list { max-width: 900px; margin: 0 auto; display: flex; flex-direction: column; gap: 48px; }
-    .skill-cat { text-align: center; }
-    .skill-cat-title { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.3em; color: #666; margin-bottom: 24px; }
-    .skill-tags { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; }
-    .skill-tag { padding: 12px 24px; font-size: 0.875rem; font-weight: 500; border: 1px solid #141414; transition: all 0.3s; }
-    .skill-tag:hover { background: #141414; color: #fff; }
-
-    /* Contact */
-    .contact { padding: 80px 0 112px; }
-    .contact-grid { display: grid; grid-template-columns: 1fr; gap: 24px; max-width: 1100px; margin: 0 auto 64px; }
-    @media (min-width: 640px) { .contact-grid { grid-template-columns: repeat(2, 1fr); } }
-    @media (min-width: 1024px) { .contact-grid { grid-template-columns: repeat(4, 1fr); } }
-    .contact-card { padding: 32px; border: 1px solid #e5e5e5; text-align: center; transition: border-color 0.3s; }
-    .contact-card:hover { border-color: #141414; }
-    .contact-icon { width: 24px; height: 24px; margin: 0 auto 16px; color: #666; }
-    .contact-card:hover .contact-icon { color: #141414; }
-    .contact-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; color: #666; margin-bottom: 8px; }
-    .contact-value { font-size: 0.875rem; font-weight: 500; }
-    .locations { text-align: center; display: flex; align-items: center; justify-content: center; gap: 12px; color: #666; }
-    .locations span { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 0.2em; }
-
+    .stats {
+      padding: 80px 0;
+      border-top: 1px solid var(--border);
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 48px;
+      text-align: center;
+    }
+    .stat-number {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      font-weight: 700;
+      color: var(--foreground);
+    }
+    .stat-label {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+    
     /* Footer */
-    footer { padding: 40px 0; border-top: 1px solid #e5e5e5; }
-    .footer-inner { display: flex; flex-direction: column; align-items: center; justify-content: space-between; gap: 16px; }
-    @media (min-width: 768px) { .footer-inner { flex-direction: row; } }
-    .footer-name { font-family: 'Playfair Display', serif; font-size: 1.125rem; font-weight: 700; }
-    .footer-copy { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: #666; }
-
-    /* Icons */
-    .icon { display: inline-block; width: 16px; height: 16px; margin-right: 8px; vertical-align: middle; }
+    footer {
+      padding: 48px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .footer-text {
+      font-size: 14px;
+      color: var(--muted);
+    }
+    
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .mobile-menu-btn { display: block; }
+      .hero { padding: 80px 0; }
+    }
   </style>
 </head>
 <body>
-
-  <!-- Header -->
   <header>
-    <div class="container">
-      <nav class="nav">
-        <a href="#" class="logo">Lexie Collier</a>
-        <div class="nav-links">
-          <a href="#about">About</a>
-          <a href="#experience">Experience</a>
-          <a href="#leadership">Leadership</a>
-          <a href="#skills">Skills</a>
-          <a href="#contact">Contact</a>
-        </div>
-        <button class="menu-btn" onclick="toggleMenu()" aria-label="Toggle menu">
-          <svg width="24" height="24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12h18M3 6h18M3 18h18"/></svg>
-        </button>
+    <div class="container header-inner">
+      <a href="#" class="logo">AC</a>
+      <nav>
+        <a href="#about" class="active">About</a>
+        <a href="#experience">Experience</a>
+        <a href="#leadership">Leadership</a>
+        <a href="#skills">Skills</a>
+        <a href="#contact">Contact</a>
       </nav>
-      <div class="mobile-menu" id="mobileMenu">
-        <a href="#about" onclick="toggleMenu()">About</a>
-        <a href="#experience" onclick="toggleMenu()">Experience</a>
-        <a href="#leadership" onclick="toggleMenu()">Leadership</a>
-        <a href="#skills" onclick="toggleMenu()">Skills</a>
-        <a href="#contact" onclick="toggleMenu()">Contact</a>
-      </div>
+      <button class="mobile-menu-btn" onclick="document.querySelector('.mobile-nav').classList.toggle('open')">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+    <div class="mobile-nav">
+      <a href="#about">About</a>
+      <a href="#experience">Experience</a>
+      <a href="#leadership">Leadership</a>
+      <a href="#skills">Skills</a>
+      <a href="#contact">Contact</a>
     </div>
   </header>
 
-  <!-- Hero -->
   <section class="hero" id="about">
     <div class="container">
-      <div class="hero-inner">
-        <div class="hero-content">
-          <p class="tagline">Entrepreneurship • Marketing • Business</p>
-          <h1>Alexandra<br><span>Collier</span></h1>
-          <p class="hero-desc">Babson College student with global experience in marketing strategy, project coordination, and market research across the US, UK, and Australia.</p>
-          <div class="btn-group">
-            <a href="#contact" class="btn btn-primary">Get in Touch →</a>
-            <a href="ALEXANDRA_COLLIER_CV_2025.pdf" download class="btn btn-outline">↓ Download CV</a>
-          </div>
-        </div>
-        <div class="hero-photo">
-          <div class="photo-border"></div>
-          <div class="photo-placeholder">LC</div>
-        </div>
+      <h1>Alexandra<br><span>Collier</span></h1>
+      <div class="hero-buttons">
+        <a href="#contact" class="btn btn-primary">Get in Touch →</a>
+        <a href="ALEXANDRA_COLLIER_CV_2025.pdf" download class="btn btn-outline">↓ Download CV</a>
       </div>
     </div>
   </section>
 
-  <!-- Highlights -->
   <section class="highlights">
     <div class="container">
-      <div class="highlights-inner">
-        <div class="highlight"><span>Marketing Strategy</span><div class="highlight-dot"></div></div>
-        <div class="highlight"><span>Client Relations</span><div class="highlight-dot"></div></div>
-        <div class="highlight"><span>Market Research</span><div class="highlight-dot"></div></div>
-        <div class="highlight"><span>Project Coordination</span></div>
+      <div class="highlights-header">
+        <p class="section-label">What I Bring</p>
+        <h2 class="section-title">Highlights</h2>
+      </div>
+      <div class="highlights-grid">
+        <div class="highlight-card">
+          <h3>Global Perspective</h3>
+          <p>Hands-on experience across 3 countries, adapting strategies to diverse markets and cultural contexts.</p>
+        </div>
+        <div class="highlight-card">
+          <h3>Entrepreneurial Drive</h3>
+          <p>Founded GemGuard, taking a product from concept to market with full ownership of brand and growth strategy.</p>
+        </div>
+        <div class="highlight-card">
+          <h3>Strategic Marketing</h3>
+          <p>Expertise in digital campaigns, market research, competitor analysis, and data-driven decision making.</p>
+        </div>
       </div>
     </div>
   </section>
 
-  <!-- Stats -->
   <section class="stats">
     <div class="container">
       <div class="stats-grid">
-        <div class="stat">
-          <p class="stat-label">Education</p>
-          <p class="stat-value">Babson College</p>
-          <p class="stat-sub">BSBA</p>
+        <div>
+          <div class="stat-number">3</div>
+          <div class="stat-label">Countries Worked</div>
         </div>
-        <div class="stat">
-          <p class="stat-label">Focus</p>
-          <p class="stat-value">Entrepreneurship</p>
-          <p class="stat-sub">& Marketing</p>
+        <div>
+          <div class="stat-number">5+</div>
+          <div class="stat-label">Professional Roles</div>
         </div>
-        <div class="stat">
-          <p class="stat-label">Experience</p>
-          <p class="stat-value">Global</p>
-          <p class="stat-sub">US • UK • Australia</p>
+        <div>
+          <div class="stat-number">1</div>
+          <div class="stat-label">Startup Founded</div>
         </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Experience -->
-  <section class="experience" id="experience">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-label">My Journey</p>
-        <h2 class="section-title">Experience</h2>
-      </div>
-      <div class="exp-list">
-        <div class="exp-item">
-          <div class="exp-meta">
-            <p class="exp-period">2024 – Present</p>
-            <p class="exp-location">Wellesley, MA</p>
-          </div>
-          <div>
-            <h3 class="exp-company">GemGuard</h3>
-            <p class="exp-role">Founder & Marketing Manager</p>
-            <p class="exp-desc">Led brand strategy, market positioning, and customer engagement for a fem-focused startup. Oversaw product direction and website development, using data-informed decisions to support growth.</p>
-          </div>
-        </div>
-        <div class="exp-item">
-          <div class="exp-meta">
-            <p class="exp-period">Summer 2024</p>
-            <p class="exp-location">London, England</p>
-          </div>
-          <div>
-            <h3 class="exp-company">CRIZAC</h3>
-            <p class="exp-role">Market Research Intern</p>
-            <p class="exp-desc">Conducted market research and competitor analysis in international student recruitment, assessing commission-based revenue models and identifying optimization opportunities.</p>
-          </div>
-        </div>
-        <div class="exp-item">
-          <div class="exp-meta">
-            <p class="exp-period">Summer 2023</p>
-            <p class="exp-location">Melbourne, Australia</p>
-          </div>
-          <div>
-            <h3 class="exp-company">Call Me Jack</h3>
-            <p class="exp-role">Marketing Intern</p>
-            <p class="exp-desc">Designed and executed digital campaigns, created social content aligned to branding strategy, and supported client relationships.</p>
-          </div>
-        </div>
-        <div class="exp-item">
-          <div class="exp-meta">
-            <p class="exp-period">Summer 2023</p>
-            <p class="exp-location">Melbourne, Australia</p>
-          </div>
-          <div>
-            <h3 class="exp-company">The Masters Institute</h3>
-            <p class="exp-role">Fashion & Coordination Intern</p>
-            <p class="exp-desc">Coordinated training, photoshoots, and events while supporting daily operations, scheduling, and marketing content.</p>
-          </div>
+        <div>
+          <div class="stat-number">4+</div>
+          <div class="stat-label">Leadership Positions</div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- Leadership -->
-  <section class="leadership" id="leadership">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-label">Beyond the Classroom</p>
-        <h2 class="section-title">Leadership & Activities</h2>
-      </div>
-      <div class="activities-grid">
-        <div class="activity">
-          <p class="activity-role">Founder & President</p>
-          <h3 class="activity-title">Entrepreneurship & Economics Forum</h3>
-          <p class="activity-desc">Founded and led a forum facilitating discussion on economic trends and business strategy, engaging students and guest speakers through high-impact events.</p>
-        </div>
-        <div class="activity">
-          <p class="activity-role">Fundraiser Manager <span>— Institut Le Rosey</span></p>
-          <h3 class="activity-title">Steering Committee</h3>
-          <p class="activity-desc">Organized fundraising initiatives and events supporting humanitarian causes, including flood relief and earthquake recovery efforts.</p>
-        </div>
-        <div class="activity">
-          <p class="activity-role">Member</p>
-          <h3 class="activity-title">Babson International Student Collective</h3>
-          <p class="activity-desc">Campus involvement focused on community-building and supporting international student integration and success.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Skills -->
-  <section class="skills" id="skills">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-label">What I Bring</p>
-        <h2 class="section-title">Skills & Interests</h2>
-      </div>
-      <div class="skills-list">
-        <div class="skill-cat">
-          <p class="skill-cat-title">Technical</p>
-          <div class="skill-tags">
-            <span class="skill-tag">Excel</span>
-            <span class="skill-tag">PowerPoint</span>
-            <span class="skill-tag">Canva</span>
-            <span class="skill-tag">Minitab</span>
-          </div>
-        </div>
-        <div class="skill-cat">
-          <p class="skill-cat-title">Languages</p>
-          <div class="skill-tags">
-            <span class="skill-tag">English (Native)</span>
-            <span class="skill-tag">French (C1)</span>
-          </div>
-        </div>
-        <div class="skill-cat">
-          <p class="skill-cat-title">Interests</p>
-          <div class="skill-tags">
-            <span class="skill-tag">Marketing</span>
-            <span class="skill-tag">Real Estate</span>
-            <span class="skill-tag">Luxury Management</span>
-            <span class="skill-tag">Skiing</span>
-            <span class="skill-tag">Netball</span>
-            <span class="skill-tag">Culture & Cuisine</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact -->
-  <section class="contact" id="contact">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-label">Let's Connect</p>
-        <h2 class="section-title">Get in Touch</h2>
-        <p style="color:#666; max-width:400px; margin:16px auto 0;">I'd love to hear from you. Reach out via email or connect with me on LinkedIn.</p>
-      </div>
-      <div class="contact-grid">
-        <a href="mailto:lexie.collier@icloud.com" class="contact-card">
-          <svg class="contact-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><path d="M22 6l-10 7L2 6"/></svg>
-          <p class="contact-label">Email</p>
-          <p class="contact-value">lexie.collier@icloud.com</p>
-        </a>
-        <a href="tel:+17818096668" class="contact-card">
-          <svg class="contact-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-          <p class="contact-label">Phone (US)</p>
-          <p class="contact-value">+1 (781) 809-6668</p>
-        </a>
-        <a href="tel:+447479013989" class="contact-card">
-          <svg class="contact-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72 12.84 12.84 0 00.7 2.81 2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45 12.84 12.84 0 002.81.7A2 2 0 0122 16.92z"/></svg>
-          <p class="contact-label">Phone (UK)</p>
-          <p class="contact-value">+44 7479 013 989</p>
-        </a>
-        <a href="https://www.linkedin.com/in/alexandra-collier" target="_blank" rel="noopener noreferrer" class="contact-card">
-          <svg class="contact-icon" fill="currentColor" viewBox="0 0 24 24"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-          <p class="contact-label">LinkedIn</p>
-          <p class="contact-value">Connect with me</p>
-        </a>
-      </div>
-      <div class="locations">
-        <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
-        <span>Wellesley, MA • London, UK • Melbourne, Australia</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- Footer -->
   <footer>
     <div class="container">
-      <div class="footer-inner">
-        <p class="footer-name">Lexie Collier</p>
-        <p class="footer-copy">© 2025 All Rights Reserved</p>
-      </div>
+      <div class="footer-logo">Alexandra Collier</div>
+      <p class="footer-text">© 2025 Alexandra Collier. All rights reserved.</p>
     </div>
   </footer>
-
-  <script>
-    function toggleMenu() {
-      document.getElementById('mobileMenu').classList.toggle('open');
-    }
-  </script>
 </body>
 </html>
