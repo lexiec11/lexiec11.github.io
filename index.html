@@ -19,6 +19,7 @@
       --border: #E5E5E5;
     }
     * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
     body {
       font-family: 'Inter', sans-serif;
       background: var(--background);
@@ -58,7 +59,7 @@
       letter-spacing: 0.1em;
       transition: color 0.3s;
     }
-    nav a:hover, nav a.active { color: var(--foreground); }
+    nav a:hover { color: var(--foreground); }
     .mobile-menu-btn {
       display: none;
       background: none;
@@ -146,12 +147,14 @@
       color: var(--background);
     }
     
-    /* Highlights */
-    .highlights {
+    /* Section Styling */
+    .section {
       padding: 80px 0;
+    }
+    .section-alt {
       background: var(--secondary);
     }
-    .highlights-header {
+    .section-header {
       text-align: center;
       margin-bottom: 48px;
     }
@@ -168,6 +171,8 @@
       font-size: clamp(32px, 5vw, 48px);
       font-weight: 700;
     }
+    
+    /* Highlights */
     .highlights-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -216,6 +221,144 @@
       margin-top: 8px;
     }
     
+    /* Experience */
+    .timeline {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .timeline-item {
+      padding: 32px;
+      border: 1px solid var(--border);
+      background: var(--background);
+      margin-bottom: 24px;
+    }
+    .timeline-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+    .timeline-company {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+    }
+    .timeline-period {
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--blush-dark);
+    }
+    .timeline-role {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--foreground);
+      margin-bottom: 4px;
+    }
+    .timeline-location {
+      font-size: 13px;
+      color: var(--muted);
+      margin-bottom: 12px;
+    }
+    .timeline-desc {
+      font-size: 14px;
+      color: var(--muted);
+      line-height: 1.7;
+    }
+    
+    /* Leadership */
+    .leadership-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 32px;
+    }
+    .leadership-card {
+      background: var(--background);
+      padding: 32px;
+      border: 1px solid var(--border);
+    }
+    .leadership-card h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+    .leadership-role {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--blush-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      margin-bottom: 12px;
+    }
+    .leadership-card p {
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    
+    /* Skills */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 32px;
+    }
+    .skill-category {
+      background: var(--background);
+      padding: 32px;
+      border: 1px solid var(--border);
+    }
+    .skill-category h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 20px;
+    }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .skill-tag {
+      padding: 8px 16px;
+      background: var(--secondary);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--foreground);
+    }
+    
+    /* Contact */
+    .contact-content {
+      max-width: 600px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    .contact-content p {
+      font-size: 18px;
+      color: var(--muted);
+      margin-bottom: 32px;
+      line-height: 1.8;
+    }
+    .contact-links {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+    }
+    .contact-link {
+      font-size: 16px;
+      color: var(--foreground);
+      text-decoration: none;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+    .contact-link:hover {
+      color: var(--blush-dark);
+    }
+    
     /* Footer */
     footer {
       padding: 48px 0;
@@ -237,6 +380,7 @@
       nav { display: none; }
       .mobile-menu-btn { display: block; }
       .hero { padding: 80px 0; }
+      .timeline-header { flex-direction: column; }
     }
   </style>
 </head>
@@ -245,7 +389,7 @@
     <div class="container header-inner">
       <a href="#" class="logo">AC</a>
       <nav>
-        <a href="#about" class="active">About</a>
+        <a href="#about">About</a>
         <a href="#experience">Experience</a>
         <a href="#leadership">Leadership</a>
         <a href="#skills">Skills</a>
@@ -256,14 +400,15 @@
       </button>
     </div>
     <div class="mobile-nav">
-      <a href="#about">About</a>
-      <a href="#experience">Experience</a>
-      <a href="#leadership">Leadership</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
+      <a href="#about" onclick="document.querySelector('.mobile-nav').classList.remove('open')">About</a>
+      <a href="#experience" onclick="document.querySelector('.mobile-nav').classList.remove('open')">Experience</a>
+      <a href="#leadership" onclick="document.querySelector('.mobile-nav').classList.remove('open')">Leadership</a>
+      <a href="#skills" onclick="document.querySelector('.mobile-nav').classList.remove('open')">Skills</a>
+      <a href="#contact" onclick="document.querySelector('.mobile-nav').classList.remove('open')">Contact</a>
     </div>
   </header>
 
+  <!-- HERO -->
   <section class="hero" id="about">
     <div class="container">
       <h1>Alexandra<br><span>Collier</span></h1>
@@ -274,9 +419,10 @@
     </div>
   </section>
 
-  <section class="highlights">
+  <!-- HIGHLIGHTS -->
+  <section class="section section-alt">
     <div class="container">
-      <div class="highlights-header">
+      <div class="section-header">
         <p class="section-label">What I Bring</p>
         <h2 class="section-title">Highlights</h2>
       </div>
@@ -297,6 +443,7 @@
     </div>
   </section>
 
+  <!-- STATS -->
   <section class="stats">
     <div class="container">
       <div class="stats-grid">
@@ -315,6 +462,164 @@
         <div>
           <div class="stat-number">4+</div>
           <div class="stat-label">Leadership Positions</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section section-alt" id="experience">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Where I've Worked</p>
+        <h2 class="section-title">Experience</h2>
+      </div>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <div class="timeline-company">AgDev</div>
+            <div class="timeline-period">Aug – Dec 2025</div>
+          </div>
+          <div class="timeline-role">Consultant</div>
+          <div class="timeline-location">Wellesley, MA</div>
+          <p class="timeline-desc">Provided strategic consulting services, supporting business development initiatives and delivering actionable insights to drive organizational growth.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <div class="timeline-company">GemGuard</div>
+            <div class="timeline-period">Apr 2024 – Present</div>
+          </div>
+          <div class="timeline-role">Founder & Marketing Manager</div>
+          <div class="timeline-location">Wellesley, MA</div>
+          <p class="timeline-desc">Launched a direct-to-consumer jewelry insurance product, leading brand strategy, digital marketing, and go-to-market execution.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <div class="timeline-company">Blank Street Coffee</div>
+            <div class="timeline-period">May – Aug 2024</div>
+          </div>
+          <div class="timeline-role">Marketing Intern</div>
+          <div class="timeline-location">London, UK</div>
+          <p class="timeline-desc">Supported marketing campaigns and local activations for a high-growth coffee chain expanding across the UK market.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <div class="timeline-company">CJAM</div>
+            <div class="timeline-period">Jan – May 2024</div>
+          </div>
+          <div class="timeline-role">Project Coordinator</div>
+          <div class="timeline-location">Wellesley, MA</div>
+          <p class="timeline-desc">Coordinated cross-functional projects and managed client communications for a student consulting organization.</p>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <div class="timeline-company">Ampersand</div>
+            <div class="timeline-period">Jun – Aug 2023</div>
+          </div>
+          <div class="timeline-role">Research Associate</div>
+          <div class="timeline-location">Sydney, Australia</div>
+          <p class="timeline-desc">Conducted market research and competitive analysis to support strategic recommendations for clients in the APAC region.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LEADERSHIP -->
+  <section class="section" id="leadership">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Making an Impact</p>
+        <h2 class="section-title">Leadership</h2>
+      </div>
+      <div class="leadership-grid">
+        <div class="leadership-card">
+          <h3>Women's Business Club</h3>
+          <div class="leadership-role">Vice President</div>
+          <p>Lead initiatives to empower women in business through networking events, speaker series, and mentorship programs.</p>
+        </div>
+        <div class="leadership-card">
+          <h3>Babson Marketing Club</h3>
+          <div class="leadership-role">Executive Board Member</div>
+          <p>Organize workshops and case competitions to develop marketing skills and connect students with industry professionals.</p>
+        </div>
+        <div class="leadership-card">
+          <h3>Delta Gamma Sorority</h3>
+          <div class="leadership-role">Philanthropy Chair</div>
+          <p>Coordinate fundraising events supporting Service for Sight, raising awareness and funds for the visually impaired.</p>
+        </div>
+        <div class="leadership-card">
+          <h3>Orientation Leader</h3>
+          <div class="leadership-role">Babson College</div>
+          <p>Guide incoming students through their transition to college life, fostering community and providing mentorship.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section class="section section-alt" id="skills">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">What I Know</p>
+        <h2 class="section-title">Skills</h2>
+      </div>
+      <div class="skills-grid">
+        <div class="skill-category">
+          <h3>Marketing</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Digital Marketing</span>
+            <span class="skill-tag">Social Media Strategy</span>
+            <span class="skill-tag">Content Creation</span>
+            <span class="skill-tag">Brand Development</span>
+            <span class="skill-tag">Market Research</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Business</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Project Management</span>
+            <span class="skill-tag">Strategic Planning</span>
+            <span class="skill-tag">Client Relations</span>
+            <span class="skill-tag">Business Development</span>
+            <span class="skill-tag">Data Analysis</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Tools</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Google Analytics</span>
+            <span class="skill-tag">Canva</span>
+            <span class="skill-tag">Microsoft Office</span>
+            <span class="skill-tag">Notion</span>
+            <span class="skill-tag">Slack</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <h3>Soft Skills</h3>
+          <div class="skill-tags">
+            <span class="skill-tag">Leadership</span>
+            <span class="skill-tag">Communication</span>
+            <span class="skill-tag">Problem Solving</span>
+            <span class="skill-tag">Teamwork</span>
+            <span class="skill-tag">Adaptability</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section class="section" id="contact">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label">Let's Connect</p>
+        <h2 class="section-title">Contact</h2>
+      </div>
+      <div class="contact-content">
+        <p>I'm always open to discussing new opportunities, collaborations, or just having a conversation about marketing and entrepreneurship.</p>
+        <div class="contact-links">
+          <a href="mailto:acollier@babson.edu" class="contact-link">acollier@babson.edu</a>
+          <a href="https://linkedin.com/in/alexandracollier" target="_blank" class="contact-link">LinkedIn →</a>
         </div>
       </div>
     </div>
